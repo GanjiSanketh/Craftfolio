@@ -5,13 +5,16 @@ import { slideIn } from "../../utils/motion";
 import { config } from "../../constants/config";
 import { Header } from "../atoms/Header";
 import resume from "../../assets/company/SANKETH G.pdf";
+import EarthCanvas from "../canvas/Earth";
 
 const Contact = () => {
   return (
-    <div className="flex justify-center items-center xl:mt-12">
+    <div className="flex flex-col-reverse xl:flex-row gap-10 overflow-hidden xl:mt-12">
+
+      {/* LEFT SIDE */}
       <motion.div
         variants={slideIn("left", "tween", 0.2, 1)}
-        className="bg-black-100 w-full max-w-3xl rounded-2xl p-10 text-center"
+        className="bg-black-100 flex-[0.75] rounded-2xl p-10 text-center"
       >
         <Header useMotion={false} {...config.contact} />
 
@@ -46,6 +49,15 @@ const Contact = () => {
           </a>
         </div>
       </motion.div>
+
+      {/* RIGHT SIDE EARTH */}
+      <motion.div
+        variants={slideIn("right", "tween", 0.2, 1)}
+        className="xl:flex-1 h-[450px] md:h-[600px] flex items-center justify-center"
+      >
+        <EarthCanvas />
+      </motion.div>
+
     </div>
   );
 };
