@@ -29,6 +29,8 @@ import dotnetcore from "./tech/dotnetcore.png";
 import postgresql from "./tech/postgresql.png";
 import csharp from "./tech/csharp.png";
 import restapi from "./tech/restapi.png";
+import gtet from "./company/gtet.png";
+import code from "./company/code.png";
 
 export {
   backend,
@@ -58,5 +60,7 @@ export {
   dotnetcore,
   postgresql,
   csharp,
-  restapi
+  restapi,
+  gtet,
+  code
 };
