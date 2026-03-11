@@ -4,6 +4,7 @@ import { SectionWrapper } from "../../hoc";
 import { slideIn } from "../../utils/motion";
 import { config } from "../../constants/config";
 import { Header } from "../atoms/Header";
+import resume from "../../assets/company/SANKETH G.pdf";
 
 const Contact = () => {
   return (
@@ -37,7 +38,7 @@ const Contact = () => {
           </a>
 
           <a
-            href=""
+            href={resume}
             target="_blank"
             className="bg-tertiary w-full md:w-2/3 rounded-xl px-6 py-3 font-bold text-white text-center hover:bg-[#915EFF] transition"
           >
