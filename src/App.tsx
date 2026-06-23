@@ -1,43 +1,56 @@
+import { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
 import {
   About,
   Contact,
   Experience,
-  Feedbacks,
   Hero,
   Navbar,
   Tech,
   Works,
-  StarsCanvas,
 } from "./components";
-import { useEffect } from "react";
+import Preloader from "./components/layout/Preloader";
+import { useLenis } from "./hooks/useLenis";
 import { config } from "./constants/config";
 
+function Portfolio() {
+  useLenis();
+
+  return (
+    <div className="relative bg-primary overflow-x-hidden">
+      <Navbar />
+      <Hero />
+      <About />
+      <Experience />
+      <Tech />
+      <Works />
+      <Contact />
+    </div>
+  );
+}
+
 const App = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
-    if (document.title !== config.html.title) {
-      document.title = config.html.title;
-    }
+    document.title = config.html.title;
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isLoaded ? "auto" : "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isLoaded]);
 
   return (
     <BrowserRouter>
-      <div className="bg-primary relative z-0">
-        <div className="bg-hero-pattern bg-cover bg-center bg-no-repeat">
-          <Navbar />
-          <Hero />
-        </div>
-        <About />
-        <Experience />
-        <Tech />
-        <Works />
-        <Feedbacks />
-        <div className="relative z-0">
-          <Contact />
-          <StarsCanvas />
-        </div>
-      </div>
+      <AnimatePresence mode="wait">
+        {!isLoaded && <Preloader onComplete={() => setIsLoaded(true)} />}
+      </AnimatePresence>
+      {isLoaded && <Portfolio />}
     </BrowserRouter>
   );
 };
